@@ -102,11 +102,6 @@ export const MovieDetailsPage = () => {
               />
             </div>
 
-            <p className="movieDetailsView__joinmoviedescription">
-              After joining an movie, you will have access to chat and files
-              uploaded by other participants
-            </p>
-
             {movie.imageUrl && (
               <img
                 src={movie.imageUrl}
@@ -115,7 +110,7 @@ export const MovieDetailsPage = () => {
               />
             )}
 
-            <p className="movieDetailsView__participantsinfo">list of actors</p>
+            <p className="movieDetailsView__actorsinfo">list of actors</p>
           </Container>
         </Col>
       </Row>

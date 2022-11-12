@@ -17,11 +17,6 @@ export const FeaturedMovieCard = ({
   onClick,
   onActionSuccess,
 }: Props) => {
-  const startDate = new Date(movie.startDate);
-  const day = startDate.getDate();
-  const month = startDate.getMonth() + 1;
-  const year = startDate.getFullYear();
-
   const { saveMovie, editMovie, removeMovie } = useDataService();
   const backgroundColor = getCategoryColor(movie.category);
   const toaster = useToaster();
@@ -61,15 +56,6 @@ export const FeaturedMovieCard = ({
   return (
     <div className="featuredMovieCard" onClick={open}>
       <div className="featuredMovieCard__container">
-        <div
-          className="featuredMovieCard__featured"
-          style={{ backgroundColor }}
-        >
-          <div className="featuredMovieCard__featured-day">{day}</div>
-          <Icon as={FaStar} color="#fff" />
-          <div className="featuredMovieCard__featured-month">{month}</div>
-          <div className="featuredMovieCard__featured-year">{year}</div>
-        </div>
         <div
           className="featuredMovieCard__content"
           style={{ backgroundImage: `url(${movie.imageUrl})` }}

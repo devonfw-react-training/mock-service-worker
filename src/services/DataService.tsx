@@ -10,16 +10,13 @@ import { getURI } from "./getUri";
 export interface Movie {
   id: number;
   title: string;
-  startDate: Date;
-  endDate: Date;
-  users: string[];
+  year: string;
   category: string;
   location: string;
   summary: string;
   description: string;
   isFeatured?: boolean;
   imageUrl?: string;
-  participants: number[];
   rating: number;
   actors: string[];
 }
@@ -27,7 +24,7 @@ export interface Movie {
 export interface DataService {
   getAllMovies: () => Promise<Movie[]>;
   allMovies: Movie[];
-  addNewMovie: (eventData: any) => Promise<Movie>;
+  addNewMovie: (eventData: Omit<Movie, "id">) => Promise<Movie>;
   getMovie: (id: number) => Promise<Movie>;
   saveMovie: (a) => Promise<Movie>;
   editMovie: (a) => Promise<Movie>;
@@ -41,7 +38,7 @@ const headers = {
 export const DataContext = createContext<DataService>({} as DataService);
 
 export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [allMovies, setAllMovies] = useState([]);
+  const [allMovies, setAllMovies] = useState<Movie[]>([]);
 
   const getAllMovies = () => {
     return fetch(getURI("movies/"))
@@ -52,13 +49,18 @@ export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
       });
   };
 
-  const addNewMovie = (movieData: any) => {
+  const addNewMovie = (movieData: Omit<Movie, "id">) => {
     console.log("Movie to create", movieData);
     return fetch(getURI("movies/"), {
       method: "POST",
       headers,
       body: JSON.stringify(movieData),
-    }).then((response) => response.json());
+    })
+      .then((response) => response.json())
+      .then((newMovie) => {
+        setAllMovies((prevMovies) => [...prevMovies, newMovie]);
+        return newMovie;
+      });
   };
 
   const getMovie = (movieId: number) => {

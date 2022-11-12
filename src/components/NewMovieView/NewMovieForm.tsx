@@ -33,7 +33,6 @@ export const NewMovieForm = ({ onClose }: any) => {
     imageUrl: "",
     isFeatured: false,
     year: "",
-    participants: "",
     rating: 3,
     actors: [],
   };

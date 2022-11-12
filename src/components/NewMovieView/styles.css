@@ -1,19 +1,9 @@
-.userEventView__root {
-  background-color: #f8f8f8;
-  height: 100vh;
-  margin-left: -5px;
-  padding: 32px;
-}
 
 .sectionTitle {
   display: flex;
   justify-content: space-between;
   padding-bottom: 32px;
   color: #24242C;
-}
-
-.sectionTitle--alignLeft {
-  justify-content: flex-start !important;
 }
 
 .sectionActions {

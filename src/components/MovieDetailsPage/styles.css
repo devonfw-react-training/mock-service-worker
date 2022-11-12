@@ -97,18 +97,11 @@
   margin-left: 8px;
 }
 
-.eventDetailsView__participantsinfo {
+.eventDetailsView__actorsinfo {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   color: #9f9f9f;
   margin-top: 24px;
   text-align: center;
-}
-
-.eventDetailsView__participants {
-  color: #9f9f9f;
-  font-size: 14px;
-  line-height: 20px;
-  margin-top: 32px;
 }
