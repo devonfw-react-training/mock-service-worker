@@ -1,0 +1,68 @@
+.sidebar {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 2;
+    /* white */
+    background: #FFFFFF;
+    box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.06);
+    border-radius: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 16px;
+}
+
+.userImage {
+    position: absolute;
+    bottom: 48px;
+    width: 70%;
+    border-radius: 100%;
+}
+
+.nav {
+    margin-top: 72px;
+}
+
+.nav__container {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.nav__container > ul {
+    width: 100%;
+    margin: 0;
+}
+
+.nav__container > ul a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.nav__container > ul > a > svg {
+    position: static !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.nav__item {
+    display: flex;
+    width: 100%;
+    height: 64px;
+
+}
+
+.nav__item.rs-sidenav-item-disabled {
+    background-color: #fff !important;
+}
+
+.nav__item--active {
+    border-right: 4px solid #8338ec ;
+}

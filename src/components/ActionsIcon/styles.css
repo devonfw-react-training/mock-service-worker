@@ -1,0 +1,11 @@
+.iconButton-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0D51FF;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    padding: 0 !important;
+}

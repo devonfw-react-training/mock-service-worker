@@ -1,0 +1,114 @@
+.eventDetailsView__leftColumn {
+  background-color: #fff;
+  height: 100vh;
+  margin-left: -5px;
+  padding: 32px 118px;
+}
+
+.eventDetailsView__goBack {
+  cursor: pointer;
+  color: #9f9f9f;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 44px;
+}
+
+.eventDetailsView__image {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.eventDetailsView__category {
+  font-weight: 700;
+  font-size: 18px;
+  position: relative;
+  line-height: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.eventDetailsView__summary {
+  margin-bottom: 24px;
+}
+
+.eventDetailsView__summary,
+.eventDetailsView__description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.eventDetailsView__rightColumn {
+  background-color: #f8f8f8;
+  padding: 32px 96px;
+  min-height: 100vh;
+  margin-right: -5px;
+}
+
+.eventDetailsView__joinEventdescription {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #c0c0c0;
+}
+
+.eventDetailsView__actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.saveEventButton {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.08));
+}
+
+.eventDetailsView__joinEventdescription {
+  margin-bottom: 64px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.eventDetailsView__date {
+  color: #24242c;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 50px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.eventDetailsView__datetime {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #9f9f9f;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.eventDetailsView__locationname {
+  margin-left: 8px;
+}
+
+.eventDetailsView__participantsinfo {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #9f9f9f;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.eventDetailsView__participants {
+  color: #9f9f9f;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 32px;
+}

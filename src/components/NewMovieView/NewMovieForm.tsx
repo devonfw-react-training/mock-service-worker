@@ -1,0 +1,223 @@
+import { Controller, useForm } from "react-hook-form";
+import ImageUploading from "react-images-uploading";
+import {
+  Button,
+  DatePicker,
+  Drawer,
+  Input,
+  Message,
+  Rate,
+  SelectPicker,
+  Toggle,
+  useToaster,
+} from "rsuite";
+import { Icon } from "@rsuite/icons";
+import { useDataService } from "../../services/DataService";
+
+import "./styles.css";
+import { useEffect, useState } from "react";
+import { FaCloudUploadAlt } from "react-icons/fa";
+
+export const NewMovieForm = ({ onClose }: any) => {
+  const toaster = useToaster();
+
+  const initmovie = {
+    type: "",
+    title: "",
+    summary: "",
+    description: "",
+    category: "",
+    location: "",
+    imageUrl: "",
+    isFeatured: false,
+    year: "",
+    participants: "",
+    rating: 3,
+  };
+  const { handleSubmit, control, reset, getValues } = useForm({
+    defaultValues: initmovie,
+  });
+
+  const { addNewMovie } = useDataService();
+  const [image, setImage] = useState<any>(null);
+
+  useEffect(() => {
+    const values = getValues();
+    reset({ ...values, imageUrl: image && image.dataURL });
+  }, [image]);
+
+  const onAddNewmovie = (movieData: typeof initmovie) => {
+    addNewMovie({ ...movieData, imageUrl: image.dataURL }).then((data) => {
+      toaster.push(<Message type="success">movie added successfully</Message>);
+      onClose();
+    });
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onAddNewmovie)}>
+      <Drawer.Body>
+        <div className="formRow">
+          <label>Category</label>
+          <Controller
+            control={control}
+            name="category"
+            render={({ field: { onChange, value, ref } }) => (
+              <SelectPicker
+                data={[
+                  { value: "sport", label: "Sport" },
+                  { value: "charity", label: "Charity" },
+                  { value: "integration", label: "Integration" },
+                ]}
+                onChange={onChange}
+                value={value}
+                ref={ref}
+                style={{ width: "100%" }}
+              />
+            )}
+          />
+        </div>
+
+        <div className="formRow">
+          <label>Title</label>
+          <Controller
+            control={control}
+            name="title"
+            render={({ field: { onChange, value, ref } }) => (
+              <Input
+                placeholder="title"
+                onChange={onChange}
+                ref={ref}
+                value={value}
+              />
+            )}
+          />
+        </div>
+
+        <div className="formRow">
+          <label>Summary</label>
+          <Controller
+            control={control}
+            name="summary"
+            render={({ field: { onChange, value, ref } }) => (
+              <Input as="textarea" onChange={onChange} ref={ref} />
+            )}
+          />
+        </div>
+
+        <div className="formRow">
+          <label>Description</label>
+          <Controller
+            control={control}
+            name="description"
+            render={({ field: { onChange, value, ref } }) => (
+              <Input as="textarea" onChange={onChange} ref={ref} />
+            )}
+          />
+        </div>
+
+        <div className="formRow">
+          <label>Year</label>
+          <Controller
+            control={control}
+            name="year"
+            render={({ field: { onChange, ref } }) => (
+              <DatePicker onChange={onChange} ref={ref} format="yyyy" />
+            )}
+          />
+        </div>
+
+        <div className="formRow">
+          <label>Rating</label>
+          <Controller
+            control={control}
+            name="rating"
+            render={({ field: { onChange, ref } }) => (
+              <Rate onChange={onChange} ref={ref} />
+            )}
+          />
+        </div>
+
+        <div className="formRow">
+          <label>Is movie featured?</label>
+          <Controller
+            control={control}
+            name="isFeatured"
+            render={({ field: { onChange, ref } }) => (
+              <Toggle onChange={onChange} ref={ref} />
+            )}
+          />
+        </div>
+
+        <div className="formRow">
+          <label>movie Picture</label>
+          <Controller
+            control={control}
+            name="imageUrl"
+            render={({ field: { onChange, value, ref } }) => {
+              const onChangeHandler = (imageList: any, addUpdateIndex: any) => {
+                setImage(imageList[imageList.length - 1]);
+                onChange();
+              };
+
+              return (
+                <ImageUploading
+                  value={value as any}
+                  onChange={onChangeHandler}
+                  maxNumber={1}
+                >
+                  {({
+                    imageList,
+                    onImageUpload,
+                    onImageUpdate,
+                    onImageRemove,
+                  }) => {
+                    return (
+                      // write your building UI
+
+                      <div className="upload__image-wrapper">
+                        <Button
+                          appearance="primary"
+                          className="appButton"
+                          ref={ref}
+                          onClick={onImageUpload}
+                        >
+                          <Icon
+                            as={FaCloudUploadAlt}
+                            color="#fff"
+                            style={{ marginRight: "12px" }}
+                          />
+                          Upload a photo
+                        </Button>
+                        &nbsp;
+                        <div
+                          className="image-item"
+                          style={{ marginTop: "8px" }}
+                        >
+                          {image && (
+                            <img src={image.dataURL} alt="" width="100" />
+                          )}
+                        </div>
+                      </div>
+                    );
+                  }}
+                </ImageUploading>
+              );
+            }}
+          />
+        </div>
+      </Drawer.Body>
+      <Drawer.Actions>
+        <Button
+          appearance="ghost"
+          className="appButtonOutlined"
+          onClick={() => onClose()}
+        >
+          Cancel
+        </Button>
+        <Button type="submit" appearance="primary" className="appButton">
+          Add movie
+        </Button>
+      </Drawer.Actions>
+    </form>
+  );
+};
