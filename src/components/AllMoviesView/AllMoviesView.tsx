@@ -2,7 +2,7 @@ import { Container } from "rsuite";
 import { useEffect, useState } from "react";
 import { useDataService, Movie } from "../../services/DataService";
 import { EventCard } from "../MovieCard";
-import { FeaturedEventCard } from "../FeaturedMovieCard";
+import { FeaturedMovieCard } from "../FeaturedMovieCard";
 import { useNavigate } from "react-router-dom";
 import { NoResults } from "../NoResults/NoResults";
 import "./styles.css";
@@ -37,10 +37,11 @@ export const AllEventsView = () => {
       {!featuredMovies.length && !movies.length && <NoResults />}
 
       {featuredMovies.map((movie) => (
-        <FeaturedEventCard
+        <FeaturedMovieCard
           key={movie.id}
           movie={movie}
           onClick={openEventDetailsPage}
+          onActionSuccess={refreshEvents}
         />
       ))}
       {movies.map((movie) => (
@@ -48,6 +49,7 @@ export const AllEventsView = () => {
           key={movie.id}
           movie={movie}
           onClick={openEventDetailsPage}
+          onActionSuccess={refreshEvents}
         />
       ))}
     </Container>

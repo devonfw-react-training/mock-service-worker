@@ -1,4 +1,4 @@
-.featuredEventCard {
+.featuredMovieCard {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -13,15 +13,15 @@
     cursor: pointer;
 }
 
-.featuredEventCard:not(:last-child) {
+.featuredMovieCard:not(:last-child) {
     margin-bottom: 16px;
 }
 
-.featuredEventCard__row {
+.featuredMovieCard__row {
     height: 100%;
 }
 
-.featuredEventCard__title {
+.featuredMovieCard__title {
     font-weight: 700;
     font-size: 18px;
     line-height: 24px;
@@ -33,7 +33,7 @@
     display: inline-block;
 }
 
-.featuredEventCard__featured {
+.featuredMovieCard__featured {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,24 +46,24 @@
     border-bottom-left-radius: 16px;
 }
 
-.featuredEventCard__featured-day {
+.featuredMovieCard__featured-day {
     font-size: 32px;
     line-height: 32px;
 }
 
-.featuredEventCard__featured-month {
+.featuredMovieCard__featured-month {
     font-size: 16px;
     line-height: 24px;
 }
 
-.featuredEventCard__container {
+.featuredMovieCard__container {
     display: flex;
     width: 100%;
     height: 100%;
     padding: 0;
 }
 
-.featuredEventCard__content {
+.featuredMovieCard__content {
     height: 100%;
     width: 100%;
     background-position: center;
@@ -72,7 +72,7 @@
     background-size: cover;
 }
 
-.featuredEventCard__backdrop {
+.featuredMovieCard__backdrop {
     padding: 16px;
     height: 100%;
     width: 100%;
@@ -82,7 +82,7 @@
     border-bottom-right-radius: 16px;
 }
 
-.featuredEventCard__companyinfo {
+.featuredMovieCard__companyinfo {
     position: absolute;
     right: 16px;
     bottom: 16px;

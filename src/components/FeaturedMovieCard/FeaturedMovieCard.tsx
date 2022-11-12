@@ -3,15 +3,20 @@ import { FaStar } from "react-icons/fa";
 import { Message, useToaster } from "rsuite";
 import { getCategoryColor } from "../../utils/getCategoryColor";
 import { Movie, useDataService } from "../../services/DataService";
-import { EventCardDropdown } from "../EventCardDropdown";
+import { MovieCardDropdown } from "../MovieCardDropdown";
 import "./styles.css";
 
 interface Props {
   movie: Movie;
-  onClick: (eventId: number) => void;
+  onClick: (movieId: number) => void;
+  onActionSuccess: () => void;
 }
 
-export const FeaturedEventCard = ({ movie, onClick }: Props) => {
+export const FeaturedMovieCard = ({
+  movie,
+  onClick,
+  onActionSuccess,
+}: Props) => {
   const startDate = new Date(movie.startDate);
   const day = startDate.getDate();
   const month = startDate.getMonth() + 1;
@@ -23,20 +28,26 @@ export const FeaturedEventCard = ({ movie, onClick }: Props) => {
 
   const saveMovieAction = () => {
     saveMovie(movie).then(() =>
-      toaster.push(<Message type="success">Event {movie.title} saved</Message>)
+      toaster.push(<Message type="success">movie {movie.title} saved</Message>)
     );
   };
 
   const editMovieAction = () => {
-    editMovie(movie).then(() =>
-      toaster.push(<Message type="success">Event {movie.title} saved</Message>)
-    );
+    editMovie(movie).then(() => {
+      toaster.push(
+        <Message type="success">movie {movie.title} edited</Message>
+      );
+      onActionSuccess();
+    });
   };
 
   const removeMovieAction = () => {
-    removeMovie(movie).then(() =>
-      toaster.push(<Message type="success">Event {movie.title} saved</Message>)
-    );
+    removeMovie(movie).then(() => {
+      toaster.push(
+        <Message type="success">movie {movie.title} removed</Message>
+      );
+      onActionSuccess();
+    });
   };
 
   const open = (e) => {
@@ -48,24 +59,24 @@ export const FeaturedEventCard = ({ movie, onClick }: Props) => {
   };
 
   return (
-    <div className="featuredEventCard" onClick={open}>
-      <div className="featuredEventCard__container">
+    <div className="featuredMovieCard" onClick={open}>
+      <div className="featuredMovieCard__container">
         <div
-          className="featuredEventCard__featured"
+          className="featuredMovieCard__featured"
           style={{ backgroundColor }}
         >
-          <div className="featuredEventCard__featured-day">{day}</div>
+          <div className="featuredMovieCard__featured-day">{day}</div>
           <Icon as={FaStar} color="#fff" />
-          <div className="featuredEventCard__featured-month">{month}</div>
-          <div className="featuredEventCard__featured-year">{year}</div>
+          <div className="featuredMovieCard__featured-month">{month}</div>
+          <div className="featuredMovieCard__featured-year">{year}</div>
         </div>
         <div
-          className="featuredEventCard__content"
+          className="featuredMovieCard__content"
           style={{ backgroundImage: `url(${movie.imageUrl})` }}
         >
-          <div className="featuredEventCard__backdrop">
-            <div className="featuredEventCard__title">{movie.title}</div>
-            <EventCardDropdown
+          <div className="featuredMovieCard__backdrop">
+            <div className="featuredMovieCard__title">{movie.title}</div>
+            <MovieCardDropdown
               category={movie.category}
               actions={[
                 { action: editMovieAction, label: "Edit" },

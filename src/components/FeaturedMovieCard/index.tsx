@@ -1,1 +1,1 @@
-export { FeaturedEventCard } from "./FeaturedMovieCard";
+export { FeaturedMovieCard } from "./FeaturedMovieCard";

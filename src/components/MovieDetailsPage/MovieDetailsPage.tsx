@@ -33,12 +33,14 @@ export const MovieDetailsPage = () => {
 
   const getCategoryString = (category: string) => {
     switch (category) {
-      case "charity":
-        return "Charity movies";
-      case "integration":
-        return "Integration movies";
-      case "sport":
-        return "Sport movies";
+      case "horror":
+        return "Horror movies";
+      case "thriller":
+        return "Thriller movies";
+      case "drama":
+        return "Drama movies";
+      case "marvel":
+        return "Marvel movies";
       default:
         return "Other movies";
     }

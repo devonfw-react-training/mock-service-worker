@@ -5,9 +5,11 @@ import {
   DatePicker,
   Drawer,
   Input,
+  InputNumber,
   Message,
   Rate,
   SelectPicker,
+  TagPicker,
   Toggle,
   useToaster,
 } from "rsuite";
@@ -33,6 +35,7 @@ export const NewMovieForm = ({ onClose }: any) => {
     year: "",
     participants: "",
     rating: 3,
+    actors: [],
   };
   const { handleSubmit, control, reset, getValues } = useForm({
     defaultValues: initmovie,
@@ -64,9 +67,12 @@ export const NewMovieForm = ({ onClose }: any) => {
             render={({ field: { onChange, value, ref } }) => (
               <SelectPicker
                 data={[
-                  { value: "sport", label: "Sport" },
-                  { value: "charity", label: "Charity" },
-                  { value: "integration", label: "Integration" },
+                  { value: "horror", label: "Horror" },
+                  { value: "thriller", label: "Thriller" },
+                  { value: "action", label: "Action" },
+                  { value: "documentary", label: "Documentary" },
+                  { value: "drama", label: "Drama" },
+                  { value: "marvel", label: "Marvel" },
                 ]}
                 onChange={onChange}
                 value={value}
@@ -121,7 +127,27 @@ export const NewMovieForm = ({ onClose }: any) => {
             control={control}
             name="year"
             render={({ field: { onChange, ref } }) => (
-              <DatePicker onChange={onChange} ref={ref} format="yyyy" />
+              <InputNumber onChange={onChange} ref={ref} />
+            )}
+          />
+        </div>
+
+        <div className="formRow">
+          <label>Actors</label>
+          <Controller
+            control={control}
+            name="year"
+            render={({ field: { onChange, ref } }) => (
+              <TagPicker
+                creatable
+                data={[]}
+                style={{ width: 300 }}
+                menuStyle={{ width: 300 }}
+                placeholder="Actors Select"
+                onCreate={(value, item) => {
+                  console.log(value, item);
+                }}
+              />
             )}
           />
         </div>

@@ -7,7 +7,7 @@ interface Props {
   actions: Array<{ action: (event: any) => any; label: string }>;
 }
 
-export const EventCardDropdown = ({ actions, category }: Props) => {
+export const MovieCardDropdown = ({ actions, category }: Props) => {
   const renderIconButton = (props: any, ref: any) => {
     return <ActionsIcon {...props} category={category} />;
   };

@@ -21,6 +21,7 @@ export interface Movie {
   imageUrl?: string;
   participants: number[];
   rating: number;
+  actors: string[];
 }
 
 export interface DataService {
@@ -52,17 +53,11 @@ export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
   };
 
   const addNewMovie = (movieData: any) => {
-    const movie = {
-      ...movieData,
-      startDate: new Date(movieData.startDate).toISOString(),
-      endDate: new Date(movieData.endDate).toISOString(),
-      participants: [],
-    };
-    console.log("Movie to create", movie);
+    console.log("Movie to create", movieData);
     return fetch(getURI("movies/"), {
       method: "POST",
       headers,
-      body: JSON.stringify(movie),
+      body: JSON.stringify(movieData),
     }).then((response) => response.json());
   };
 
@@ -82,7 +77,7 @@ export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const removeMovie = (movieData: any) => {
     return fetch(getURI(`movies/${movieData.id}/`), {
-      method: "PUT",
+      method: "DELETE",
       headers,
       body: JSON.stringify(movieData),
     }).then((response) => response.json());
