@@ -15,7 +15,7 @@ export const NoResults = () => {
 
   return (
     <Container className="noResults">
-      <div className="noResults__title">Sorry, there is no movie saved yet</div>
+      <div className="noResults__title">Sorry, there is no movie added yet</div>
       <img
         className="noResults__image"
         src={NoResultsImage}

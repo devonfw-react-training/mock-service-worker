@@ -37,7 +37,7 @@ export const AllEventsView = () => {
   }, [allMovies]);
 
   const openEventDetailsPage = (eventId: number) => {
-    navigate(`/events/${eventId}`);
+    navigate(`/movies/${eventId}`);
   };
 
   if (!featuredMovies.length && !movies.length) {
