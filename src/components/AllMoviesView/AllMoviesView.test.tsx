@@ -8,6 +8,7 @@ import { setupServer } from "msw/node";
 import { getURI } from "../../services/getUri";
 
 const mockMovie = {
+  id: 1,
   category: "Marvel",
   title: "Avengers",
   year: "2015",
@@ -35,6 +36,9 @@ const server = setupServer(
   }),
   rest.post(getURI("movies"), (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(req.body));
+  }),
+  rest.delete(getURI("movies/*"), (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(mockMovie));
   })
 );
 
@@ -110,7 +114,23 @@ describe("AllMoviesView", () => {
     const movieCardTitle = within(movieCard).getByText("Avengers");
     expect(movieCardTitle).toBeInTheDocument();
   });
-  test("remove existing movie", () => {
-    expect(true).toBe(true);
+  test("remove existing movie", async () => {
+    render(<AllMoviesView />, { wrapper: WrapperComponent });
+    expect(screen.getByTestId("loader")).toBeInTheDocument();
+    server.use(
+      rest.get(getURI("movies"), (req, res, ctx) => {
+        return res(ctx.json([mockMovie]));
+      })
+    );
+    const movieCard = await screen.findByTestId("movie-card");
+    expect(movieCard).toBeInTheDocument();
+    const movieCardTitle = within(movieCard).getByText("Avengers");
+    expect(movieCardTitle).toBeInTheDocument();
+    const movieCardActionDropdown = within(movieCard).getByRole("button");
+    userEvent.click(movieCardActionDropdown);
+    const removeMenuItem = await screen.findByText("Remove");
+    userEvent.click(removeMenuItem);
+    const successMessage = await screen.findByText("Movie Avengers removed");
+    expect(successMessage).toBeInTheDocument();
   });
 });
