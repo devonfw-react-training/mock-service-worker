@@ -1,4 +1,4 @@
-import { Container, IconButton } from "rsuite";
+import { Container, IconButton, Loader, Placeholder } from "rsuite";
 import { useCallback, useEffect, useState } from "react";
 import { useDataService, Movie } from "../../services/DataService";
 import { MovieCard } from "../MovieCard";
@@ -10,8 +10,16 @@ import "./styles.css";
 import { PlusIcon } from "./Plus";
 import { NewMovieDrawer } from "../NewMovieView/NewMovieDrawer";
 
+const PageLoader = () => (
+  <div data-testid="loader">
+    <Placeholder.Paragraph rows={8} />
+    <Loader center content="loading" />
+  </div>
+);
+
 export const AllMoviesView = () => {
   const [openNewMovie, setOpenNewMovie] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { getAllMovies, allMovies, editedMovie, setEditedMovie } =
     useDataService();
 
@@ -25,11 +33,13 @@ export const AllMoviesView = () => {
   }, []);
 
   const refreshMovies = () => {
+    setLoading(true);
     getAllMovies().then((newMovies) => {
       const featuredEvents = newMovies.filter((e) => e.isFeatured);
       const nonFeaturedEvents = newMovies.filter((e) => !e.isFeatured);
       setFeaturedMovies(featuredEvents);
       setMovies(nonFeaturedEvents);
+      setLoading(false);
     });
   };
 
@@ -48,6 +58,8 @@ export const AllMoviesView = () => {
   const openEventDetailsPage = (eventId: number) => {
     navigate(`/movies/${eventId}`);
   };
+
+  if (loading) return <PageLoader />;
 
   if (!featuredMovies.length && !movies.length) {
     return <NoResults />;
