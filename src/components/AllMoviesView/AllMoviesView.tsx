@@ -1,7 +1,7 @@
 import { Container, IconButton } from "rsuite";
 import { useCallback, useEffect, useState } from "react";
 import { useDataService, Movie } from "../../services/DataService";
-import { EventCard } from "../MovieCard";
+import { MovieCard } from "../MovieCard";
 import { FeaturedMovieCard } from "../FeaturedMovieCard";
 import { useNavigate } from "react-router-dom";
 import { NoResults } from "../NoResults/NoResults";
@@ -24,7 +24,7 @@ export const AllEventsView = () => {
     setOpenNewMovie(true);
   }, []);
 
-  const refreshEvents = () => {
+  const refreshMovies = () => {
     getAllMovies().then((newMovies) => {
       const featuredEvents = newMovies.filter((e) => e.isFeatured);
       const nonFeaturedEvents = newMovies.filter((e) => !e.isFeatured);
@@ -34,7 +34,8 @@ export const AllEventsView = () => {
   };
 
   useEffect(() => {
-    refreshEvents();
+    console.log("refresh", allMovies);
+    refreshMovies();
   }, [allMovies]);
 
   useEffect(() => {
@@ -73,15 +74,16 @@ export const AllEventsView = () => {
             key={movie.id}
             movie={movie}
             onClick={openEventDetailsPage}
-            onActionSuccess={refreshEvents}
+            onActionSuccess={refreshMovies}
           />
         ))}
+
         {movies.map((movie) => (
-          <EventCard
+          <MovieCard
             key={movie.id}
             movie={movie}
             onClick={openEventDetailsPage}
-            onActionSuccess={refreshEvents}
+            onActionSuccess={refreshMovies}
           />
         ))}
       </Container>

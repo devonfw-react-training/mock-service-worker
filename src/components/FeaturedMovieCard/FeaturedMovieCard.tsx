@@ -1,7 +1,4 @@
-import { Icon } from "@rsuite/icons";
-import { FaStar } from "react-icons/fa";
 import { Message, useToaster } from "rsuite";
-import { getCategoryColor } from "../../utils/getCategoryColor";
 import { Movie, useDataService } from "../../services/DataService";
 import { MovieCardDropdown } from "../MovieCardDropdown";
 import "./styles.css";
@@ -17,15 +14,8 @@ export const FeaturedMovieCard = ({
   onClick,
   onActionSuccess,
 }: Props) => {
-  const { saveMovie, editMovie, removeMovie } = useDataService();
-  const backgroundColor = getCategoryColor(movie.category);
+  const { editMovie, removeMovie } = useDataService();
   const toaster = useToaster();
-
-  const saveMovieAction = () => {
-    saveMovie(movie).then(() =>
-      toaster.push(<Message type="success">movie {movie.title} saved</Message>)
-    );
-  };
 
   const editMovieAction = () => {
     editMovie(movie).then(() => {
@@ -66,7 +56,6 @@ export const FeaturedMovieCard = ({
               category={movie.category}
               actions={[
                 { action: editMovieAction, label: "Edit" },
-                { action: saveMovieAction, label: "Save" },
                 { action: removeMovieAction, label: "Remove" },
               ]}
             />

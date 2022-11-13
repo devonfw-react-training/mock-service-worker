@@ -1,1 +1,1 @@
-export { EventCard } from "./MovieCardDropdown";
+export { MovieCard } from "./MovieCard";
