@@ -10,7 +10,7 @@ import "./styles.css";
 import { PlusIcon } from "./Plus";
 import { NewMovieDrawer } from "../NewMovieView/NewMovieDrawer";
 
-export const AllEventsView = () => {
+export const AllMoviesView = () => {
   const [openNewMovie, setOpenNewMovie] = useState(false);
   const { getAllMovies, allMovies, editedMovie, setEditedMovie } =
     useDataService();
@@ -34,7 +34,6 @@ export const AllEventsView = () => {
   };
 
   useEffect(() => {
-    console.log("refresh", allMovies);
     refreshMovies();
   }, [allMovies]);
 
