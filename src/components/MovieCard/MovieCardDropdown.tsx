@@ -10,16 +10,11 @@ interface Props {
 }
 
 export const EventCard = ({ movie, onClick, onActionSuccess }: Props) => {
-  const { editMovie, removeMovie } = useDataService();
+  const { removeMovie, setEditedMovie } = useDataService();
   const toaster = useToaster();
 
   const editMovieAction = () => {
-    editMovie(movie).then(() => {
-      toaster.push(
-        <Message type="success">Movie {movie.title} edited</Message>
-      );
-      onActionSuccess();
-    });
+    setEditedMovie(movie);
   };
 
   const removeMovieAction = () => {

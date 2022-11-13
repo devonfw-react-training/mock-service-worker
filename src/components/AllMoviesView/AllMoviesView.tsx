@@ -1,5 +1,5 @@
 import { Container, IconButton } from "rsuite";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDataService, Movie } from "../../services/DataService";
 import { EventCard } from "../MovieCard";
 import { FeaturedMovieCard } from "../FeaturedMovieCard";
@@ -12,16 +12,17 @@ import { NewMovieDrawer } from "../NewMovieView/NewMovieDrawer";
 
 export const AllEventsView = () => {
   const [openNewMovie, setOpenNewMovie] = useState(false);
-  const { getAllMovies, allMovies } = useDataService();
+  const { getAllMovies, allMovies, editedMovie, setEditedMovie } =
+    useDataService();
 
   const [movies, setMovies] = useState<Movie[]>([] as Movie[]);
   const [featuredMovies, setFeaturedMovies] = useState<Movie[]>([] as Movie[]);
 
   const navigate = useNavigate();
 
-  const addNew = () => {
+  const addNew = useCallback(() => {
     setOpenNewMovie(true);
-  };
+  }, []);
 
   const refreshEvents = () => {
     getAllMovies().then((newMovies) => {
@@ -35,6 +36,14 @@ export const AllEventsView = () => {
   useEffect(() => {
     refreshEvents();
   }, [allMovies]);
+
+  useEffect(() => {
+    if (editedMovie) {
+      setOpenNewMovie(true);
+    } else {
+      setOpenNewMovie(false);
+    }
+  }, [editedMovie]);
 
   const openEventDetailsPage = (eventId: number) => {
     navigate(`/movies/${eventId}`);
@@ -50,9 +59,12 @@ export const AllEventsView = () => {
         <div className="sectionTitle">
           <h2>My favouirite movies</h2>
           <IconButton
+            data-testid="add-movie-button"
             className="iconButton titleIcon"
             onClick={addNew}
-            icon={<Icon as={() => <PlusIcon color="#AFC6FF" />} />}
+            icon={
+              <Icon as={() => <PlusIcon onClick={addNew} color="#AFC6FF" />} />
+            }
           />
         </div>
 
@@ -75,7 +87,10 @@ export const AllEventsView = () => {
       </Container>
       <NewMovieDrawer
         open={openNewMovie}
-        onClose={() => setOpenNewMovie(false)}
+        onClose={() => {
+          setEditedMovie(null);
+          setOpenNewMovie(false);
+        }}
       />
     </>
   );

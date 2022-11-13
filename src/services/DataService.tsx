@@ -28,6 +28,8 @@ export interface DataService {
   getMovie: (id: number) => Promise<Movie>;
   saveMovie: (a) => Promise<Movie>;
   editMovie: (a) => Promise<Movie>;
+  editedMovie: Movie | null;
+  setEditedMovie: (movie: Movie | null) => void;
   removeMovie: (a) => Promise<Movie>;
 }
 
@@ -39,6 +41,7 @@ export const DataContext = createContext<DataService>({} as DataService);
 
 export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
   const [allMovies, setAllMovies] = useState<Movie[]>([]);
+  const [editedMovie, setEditedMovie] = useState<Movie | null>(null);
 
   const getAllMovies = () => {
     return fetch(getURI("movies/"))
@@ -102,6 +105,8 @@ export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
         addNewMovie,
         saveMovie,
         removeMovie,
+        setEditedMovie,
+        editedMovie,
         editMovie,
       }}
     >

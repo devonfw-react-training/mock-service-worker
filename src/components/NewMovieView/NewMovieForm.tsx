@@ -14,7 +14,7 @@ import {
   useToaster,
 } from "rsuite";
 import { Icon } from "@rsuite/icons";
-import { useDataService } from "../../services/DataService";
+import { Movie, useDataService } from "../../services/DataService";
 
 import "./styles.css";
 import { useEffect, useState } from "react";
@@ -35,9 +35,13 @@ export const NewMovieForm = ({ onClose }: any) => {
     year: "",
     rating: 3,
     actors: [],
-  };
+  } as any;
+
+  const { editedMovie } = useDataService();
+  console.log("Edited", editedMovie);
+
   const { handleSubmit, control, reset, getValues } = useForm({
-    defaultValues: initmovie,
+    defaultValues: editedMovie || initmovie,
   });
 
   const { addNewMovie } = useDataService();
@@ -104,7 +108,12 @@ export const NewMovieForm = ({ onClose }: any) => {
             control={control}
             name="summary"
             render={({ field: { onChange, value, ref } }) => (
-              <Input as="textarea" onChange={onChange} ref={ref} />
+              <Input
+                as="textarea"
+                onChange={onChange}
+                ref={ref}
+                value={value}
+              />
             )}
           />
         </div>
@@ -115,7 +124,12 @@ export const NewMovieForm = ({ onClose }: any) => {
             control={control}
             name="description"
             render={({ field: { onChange, value, ref } }) => (
-              <Input as="textarea" onChange={onChange} ref={ref} />
+              <Input
+                as="textarea"
+                onChange={onChange}
+                ref={ref}
+                value={value}
+              />
             )}
           />
         </div>
@@ -125,8 +139,8 @@ export const NewMovieForm = ({ onClose }: any) => {
           <Controller
             control={control}
             name="year"
-            render={({ field: { onChange, ref } }) => (
-              <InputNumber onChange={onChange} ref={ref} />
+            render={({ field: { onChange, ref, value } }) => (
+              <InputNumber onChange={onChange} ref={ref} value={value} />
             )}
           />
         </div>
@@ -156,8 +170,8 @@ export const NewMovieForm = ({ onClose }: any) => {
           <Controller
             control={control}
             name="rating"
-            render={({ field: { onChange, ref } }) => (
-              <Rate onChange={onChange} ref={ref} />
+            render={({ field: { onChange, ref, value } }) => (
+              <Rate onChange={onChange} ref={ref} value={value} />
             )}
           />
         </div>
