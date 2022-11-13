@@ -1,13 +1,5 @@
-import { FaAngleLeft, FaMapMarkerAlt, FaRegBookmark } from "react-icons/fa";
-import {
-  Col,
-  Container,
-  Grid,
-  IconButton,
-  Message,
-  Row,
-  useToaster,
-} from "rsuite";
+import { FaAngleLeft } from "react-icons/fa";
+import { Col, Container, Grid, Row } from "rsuite";
 import { Icon } from "@rsuite/icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -21,15 +13,6 @@ export const MovieDetailsPage = () => {
 
   const { movieId } = useParams();
   const { getMovie } = useDataService();
-
-  const { saveMovie } = useDataService();
-  const toaster = useToaster();
-
-  const savemovieAction = () => {
-    saveMovie(movie).then(() =>
-      toaster.push(<Message type="success">movie {movie.title} saved</Message>)
-    );
-  };
 
   const getCategoryString = (category: string) => {
     switch (category) {
@@ -89,14 +72,6 @@ export const MovieDetailsPage = () => {
         </Col>
         <Col xs={24} sm={24} md={8}>
           <Container className="movieDetailsView__rightColumn">
-            <div className="movieDetailsView__actions" onClick={goBack}>
-              <IconButton
-                className="iconButton savemovieButton"
-                onClick={savemovieAction}
-                icon={<Icon as={FaRegBookmark} color="#AFC6FF" />}
-              />
-            </div>
-
             {movie.imageUrl && (
               <img
                 src={movie.imageUrl}

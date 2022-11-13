@@ -9,7 +9,7 @@ interface Props {
   onActionSuccess: () => void;
 }
 
-export const EventCard = ({ movie, onClick, onActionSuccess }: Props) => {
+export const MovieCard = ({ movie, onClick, onActionSuccess }: Props) => {
   const { removeMovie, setEditedMovie } = useDataService();
   const toaster = useToaster();
 

@@ -57,7 +57,10 @@ export const NewMovieForm = ({ onClose }: any) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onAddNewmovie)}>
+    <form
+      onSubmit={handleSubmit(onAddNewmovie)}
+      data-testid="add-new-movie-form"
+    >
       <Drawer.Body>
         <div className="formRow">
           <label>Category</label>

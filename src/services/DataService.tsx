@@ -26,7 +26,6 @@ export interface DataService {
   allMovies: Movie[];
   addNewMovie: (eventData: Omit<Movie, "id">) => Promise<Movie>;
   getMovie: (id: number) => Promise<Movie>;
-  saveMovie: (a) => Promise<Movie>;
   editMovie: (a) => Promise<Movie>;
   editedMovie: Movie | null;
   setEditedMovie: (movie: Movie | null) => void;
@@ -47,8 +46,11 @@ export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
     return fetch(getURI("movies/"))
       .then((response) => response.json())
       .then((newMovies) => {
-        setAllMovies(newMovies);
-        return newMovies;
+        if (newMovies.length !== allMovies.length) {
+          setAllMovies(newMovies);
+          return newMovies;
+        }
+        return allMovies;
       });
   };
 
@@ -88,14 +90,6 @@ export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
     }).then((response) => response.json());
   };
 
-  const saveMovie = (movieData: any) => {
-    return fetch(getURI(`movies/${movieData.id}/`), {
-      method: "PATCH",
-      headers,
-      body: JSON.stringify(movieData),
-    }).then((response) => response.json());
-  };
-
   return (
     <DataContext.Provider
       value={{
@@ -103,7 +97,6 @@ export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
         getMovie,
         allMovies,
         addNewMovie,
-        saveMovie,
         removeMovie,
         setEditedMovie,
         editedMovie,
