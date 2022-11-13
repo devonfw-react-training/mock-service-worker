@@ -1,0 +1,23 @@
+.noResults {
+    display: flex;
+    align-items: center;
+}
+
+.noResults__title {
+    font-size: 24px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.noResults__image {
+    max-width: 40%;
+}
+
+.noResults__action {
+    display: flex !important;
+    margin-top: 32px;
+}
+
+.noResults__action svg {
+    margin-right: 8px;
+}

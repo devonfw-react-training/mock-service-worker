@@ -1,0 +1,86 @@
+.movieDetailsView__leftColumn {
+  background-color: #fff;
+  height: 100vh;
+  margin-left: -5px;
+  padding: 32px 118px;
+}
+
+.movieDetailsView__goBack {
+  cursor: pointer;
+  color: #9f9f9f;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 44px;
+}
+
+.movieDetailsView__image {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.movieDetailsView__category {
+  font-weight: 700;
+  font-size: 18px;
+  position: relative;
+  line-height: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.movieDetailsView__summary {
+  margin-bottom: 24px;
+}
+
+.movieDetailsView__summary,
+.movieDetailsView__description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.movieDetailsView__rightColumn {
+  background-color: #f8f8f8;
+  padding: 32px 96px;
+  min-height: 100vh;
+  margin-right: -5px;
+}
+
+.movieDetailsView__joinEventdescription {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #c0c0c0;
+}
+
+.movieDetailsView__actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.saveMovieButton {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.08));
+}
+
+.movieDetailsView__date {
+  color: #24242c;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 50px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.movieDetailsView__actorsinfo {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #9f9f9f;
+  margin-top: 24px;
+  text-align: center;
+}

@@ -1,0 +1,1 @@
+export { FeaturedMovieCard } from "./FeaturedMovieCard";

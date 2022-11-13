@@ -1,0 +1,38 @@
+.eventCard {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    left: 0px;
+    top: 0px;
+
+    /* white */
+    background: #FFFFFF;
+
+    /* default shadow */
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+}
+
+.eventCard:not(:last-child) {
+    margin-bottom: 16px;;
+}
+
+.eventCard__title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.eventCard__image {
+    width: 100px;
+    height: 75px;
+    margin-right: 24px;
+}
+
+.eventCard__image img {
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    border-radius: 8px;
+}

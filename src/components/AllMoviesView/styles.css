@@ -1,0 +1,39 @@
+.allEventsView__root {
+    background-color: #fff;
+    height: 100vh;
+    padding: 32px 78px;
+    margin-left: 8.33%;
+}
+
+.dateSwitcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    padding: 12px 8px;
+    border: 1px solid #F2F2F2;
+    border-radius: 8px;
+    margin-left: 16px;
+}
+
+.dateSwitcher__element {
+    cursor: pointer;
+}
+
+.dateSwitcher__element:first-child {
+    margin-right: 8px;
+}
+
+.dateSwitcher__element:last-child {
+    margin-left: 8px;
+}
+
+.dateSwitcher__divider {
+    border: 1px solid #C0C0C0;
+    height: 24px;
+    width: 1px;
+}
+
+.dateSwitche__icon {
+    font-size: 16px;
+}

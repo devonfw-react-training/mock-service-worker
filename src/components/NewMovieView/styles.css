@@ -1,0 +1,103 @@
+
+.sectionTitle {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 32px;
+  color: #24242C;
+}
+
+.sectionActions {
+  justify-content: flex-end;
+}
+
+.sectionActions__description {
+  text-align: center;
+  color: #24242C;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 12px;
+}
+
+.titleIcon {
+  margin-left: 16px;
+}
+
+.iconButton {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px;
+  gap: 8px;
+
+  width: 48px;
+  height: 48px;
+
+  /* white */
+  background: #ffffff;
+  border-radius: 8px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.08));
+}
+
+.appButton {
+  background-color: #8338ec !important;
+}
+
+.appButtonOutlined {
+  color: #8338ec;
+}
+
+.tabLinks {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.tabLinks__item {
+  font-size: 16px;
+  color: #c0c0c0;
+  cursor: pointer;
+}
+
+.tabLinks__item:not(:last-child) {
+  margin-right: 32px;
+}
+
+.tabItem {
+  margin-bottom: 16px;
+}
+
+.tabItem--active {
+  color: #0d51ff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.formRow {
+  margin-bottom: 26px;
+}
+
+.formRow label {
+  display: block;
+  font-size: 12px;
+  line-height: 14px;
+  color: #0D51FF;
+  margin-bottom: 4px;
+}
+
+.formRow input,
+.formRow textarea,
+.formRow .rs-btn[role="combobox"] {
+  background-color: #F2F2F2 !important;
+  border: 1px solid #C0C0C0 !important;
+}
