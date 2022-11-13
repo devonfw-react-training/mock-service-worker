@@ -27,18 +27,15 @@ export const NewMovieForm = ({ onClose }: any) => {
     type: "",
     title: "",
     summary: "",
-    description: "",
     category: "",
-    location: "",
     imageUrl: "",
-    isFeatured: false,
+    // isFeatured: false,
     year: "",
     rating: 3,
     actors: [],
   } as any;
 
   const { editedMovie } = useDataService();
-  console.log("Edited", editedMovie);
 
   const { handleSubmit, control, reset, getValues } = useForm({
     defaultValues: editedMovie || initmovie,
@@ -119,22 +116,6 @@ export const NewMovieForm = ({ onClose }: any) => {
         </div>
 
         <div className="formRow">
-          <label>Description</label>
-          <Controller
-            control={control}
-            name="description"
-            render={({ field: { onChange, value, ref } }) => (
-              <Input
-                as="textarea"
-                onChange={onChange}
-                ref={ref}
-                value={value}
-              />
-            )}
-          />
-        </div>
-
-        <div className="formRow">
           <label>Year</label>
           <Controller
             control={control}
@@ -177,7 +158,7 @@ export const NewMovieForm = ({ onClose }: any) => {
         </div>
 
         <div className="formRow">
-          <label>Is movie featured?</label>
+          <label>Is movie favourite?</label>
           <Controller
             control={control}
             name="isFeatured"

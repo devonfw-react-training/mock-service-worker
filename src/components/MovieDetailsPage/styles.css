@@ -1,11 +1,11 @@
-.eventDetailsView__leftColumn {
+.movieDetailsView__leftColumn {
   background-color: #fff;
   height: 100vh;
   margin-left: -5px;
   padding: 32px 118px;
 }
 
-.eventDetailsView__goBack {
+.movieDetailsView__goBack {
   cursor: pointer;
   color: #9f9f9f;
   font-weight: 700;
@@ -14,12 +14,12 @@
   margin-bottom: 44px;
 }
 
-.eventDetailsView__image {
+.movieDetailsView__image {
   max-width: 100%;
   border-radius: 8px;
 }
 
-.eventDetailsView__category {
+.movieDetailsView__category {
   font-weight: 700;
   font-size: 18px;
   position: relative;
@@ -30,51 +30,44 @@
   justify-content: space-between;
 }
 
-.eventDetailsView__summary {
+.movieDetailsView__summary {
   margin-bottom: 24px;
 }
 
-.eventDetailsView__summary,
-.eventDetailsView__description {
+.movieDetailsView__summary,
+.movieDetailsView__description {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 }
 
-.eventDetailsView__rightColumn {
+.movieDetailsView__rightColumn {
   background-color: #f8f8f8;
   padding: 32px 96px;
   min-height: 100vh;
   margin-right: -5px;
 }
 
-.eventDetailsView__joinEventdescription {
+.movieDetailsView__joinEventdescription {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   color: #c0c0c0;
 }
 
-.eventDetailsView__actions {
+.movieDetailsView__actions {
   display: flex;
   justify-content: center;
   margin-bottom: 24px;
 }
 
-.saveEventButton {
+.saveMovieButton {
   width: 48px;
   height: 48px;
   filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.08));
 }
 
-.eventDetailsView__joinEventdescription {
-  margin-bottom: 64px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-.eventDetailsView__date {
+.movieDetailsView__date {
   color: #24242c;
   font-weight: 700;
   font-size: 40px;
@@ -83,21 +76,7 @@
   margin-top: 24px;
 }
 
-.eventDetailsView__datetime {
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 24px;
-  color: #9f9f9f;
-  text-align: center;
-  margin-top: 8px;
-  margin-bottom: 24px;
-}
-
-.eventDetailsView__locationname {
-  margin-left: 8px;
-}
-
-.eventDetailsView__actorsinfo {
+.movieDetailsView__actorsinfo {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;

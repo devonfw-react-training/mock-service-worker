@@ -85,11 +85,6 @@ export const MovieDetailsPage = () => {
             {movie.summary && (
               <div className="movieDetailsView__summary">{movie.summary}</div>
             )}
-            {movie.description && (
-              <div className="movieDetailsView__description">
-                {movie.description}
-              </div>
-            )}
           </Container>
         </Col>
         <Col xs={24} sm={24} md={8}>
