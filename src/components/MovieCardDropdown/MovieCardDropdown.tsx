@@ -12,7 +12,7 @@ export const MovieCardDropdown = ({ actions, category }: Props) => {
     return <ActionsIcon {...props} category={category} />;
   };
   return (
-    <div className="eventCard__dropdown">
+    <div className="movieCard__dropdown">
       <Dropdown renderToggle={renderIconButton}>
         {actions.map((a) => (
           <Dropdown.Item key={a.label} onClick={a.action}>

@@ -14,7 +14,7 @@ import {
   useToaster,
 } from "rsuite";
 import { Icon } from "@rsuite/icons";
-import { Movie, useDataService } from "../../services/DataService";
+import { useDataService } from "../../services/DataService";
 
 import "./styles.css";
 import { useEffect, useState } from "react";
@@ -24,7 +24,6 @@ export const NewMovieForm = ({ onClose }: any) => {
   const toaster = useToaster();
 
   const initmovie = {
-    type: "",
     title: "",
     summary: "",
     category: "",
@@ -50,10 +49,14 @@ export const NewMovieForm = ({ onClose }: any) => {
   }, [image]);
 
   const onAddNewmovie = (movieData: typeof initmovie) => {
-    addNewMovie({ ...movieData, imageUrl: image.dataURL }).then((data) => {
-      toaster.push(<Message type="success">movie added successfully</Message>);
-      onClose();
-    });
+    addNewMovie({ ...movieData, imageUrl: image && image.dataURL }).then(
+      (data) => {
+        toaster.push(
+          <Message type="success">movie added successfully</Message>
+        );
+        onClose();
+      }
+    );
   };
 
   return (
@@ -69,6 +72,7 @@ export const NewMovieForm = ({ onClose }: any) => {
             name="category"
             render={({ field: { onChange, value, ref } }) => (
               <SelectPicker
+                data-testid="category-field"
                 data={[
                   { value: "horror", label: "Horror" },
                   { value: "thriller", label: "Thriller" },
@@ -94,6 +98,7 @@ export const NewMovieForm = ({ onClose }: any) => {
             render={({ field: { onChange, value, ref } }) => (
               <Input
                 placeholder="title"
+                data-testid="title-field"
                 onChange={onChange}
                 ref={ref}
                 value={value}
@@ -110,6 +115,7 @@ export const NewMovieForm = ({ onClose }: any) => {
             render={({ field: { onChange, value, ref } }) => (
               <Input
                 as="textarea"
+                data-testid="summary-field"
                 onChange={onChange}
                 ref={ref}
                 value={value}
@@ -124,7 +130,12 @@ export const NewMovieForm = ({ onClose }: any) => {
             control={control}
             name="year"
             render={({ field: { onChange, ref, value } }) => (
-              <InputNumber onChange={onChange} ref={ref} value={value} />
+              <InputNumber
+                data-testid="year-field"
+                onChange={onChange}
+                ref={ref}
+                value={value}
+              />
             )}
           />
         </div>
@@ -136,6 +147,7 @@ export const NewMovieForm = ({ onClose }: any) => {
             name="year"
             render={({ field: { onChange, ref } }) => (
               <TagPicker
+                data-testid="actors-field"
                 creatable
                 data={[]}
                 style={{ width: 300 }}
@@ -155,12 +167,17 @@ export const NewMovieForm = ({ onClose }: any) => {
             control={control}
             name="rating"
             render={({ field: { onChange, ref, value } }) => (
-              <Rate onChange={onChange} ref={ref} value={value} />
+              <Rate
+                data-testid="rating-field"
+                onChange={onChange}
+                ref={ref}
+                value={value}
+              />
             )}
           />
         </div>
 
-        <div className="formRow">
+        {/* <div className="formRow">
           <label>Is movie favourite?</label>
           <Controller
             control={control}
@@ -169,7 +186,7 @@ export const NewMovieForm = ({ onClose }: any) => {
               <Toggle onChange={onChange} ref={ref} />
             )}
           />
-        </div>
+        </div> */}
 
         <div className="formRow">
           <label>movie Picture</label>

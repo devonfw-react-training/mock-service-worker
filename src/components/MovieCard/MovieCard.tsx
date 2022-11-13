@@ -35,12 +35,12 @@ export const MovieCard = ({ movie, onClick, onActionSuccess }: Props) => {
   };
 
   return (
-    <div className="eventCard" onClick={open}>
-      <div className="eventCard__image">
+    <div className="movieCard" data-testid="movie-card" onClick={open}>
+      <div className="movieCard__image">
         <img src={movie.imageUrl} alt={`${movie.title}`} />
       </div>
-      <div className="eventCard__content">
-        <div className="eventCard__title">{movie.title}</div>
+      <div className="movieCard__content">
+        <div className="movieCard__title">{movie.title}</div>
         <MovieCardDropdown
           category={movie.category}
           actions={[

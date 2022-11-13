@@ -43,14 +43,19 @@ export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
   const [editedMovie, setEditedMovie] = useState<Movie | null>(null);
 
   const getAllMovies = () => {
+    console.log("will fetch", fetch);
     return fetch(getURI("movies/"))
       .then((response) => response.json())
       .then((newMovies) => {
+        console.log("will respond", newMovies);
         if (newMovies.length !== allMovies.length) {
           setAllMovies(newMovies);
           return newMovies;
         }
         return allMovies;
+      })
+      .catch((err) => {
+        console.log("request failed", err);
       });
   };
 
