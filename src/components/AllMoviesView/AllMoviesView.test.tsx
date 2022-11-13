@@ -8,6 +8,7 @@ import { setupServer } from "msw/node";
 import { getURI } from "../../services/getUri";
 
 const mockMovie = {
+  id: 1,
   category: "Marvel",
   title: "Avengers",
   year: "2015",
@@ -111,6 +112,10 @@ describe("AllMoviesView", () => {
     expect(movieCardTitle).toBeInTheDocument();
   });
   test("remove existing movie", () => {
+    /*
+      Write test which will render one card with mockMovie on the page, select option remove from card dropdown
+      handle delete request and check for message "Movie Avengers removed" to appear
+    */
     expect(true).toBe(true);
   });
 });
