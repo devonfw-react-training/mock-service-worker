@@ -26,10 +26,10 @@ export interface DataService {
   allMovies: Movie[];
   addNewMovie: (eventData: Omit<Movie, "id">) => Promise<Movie>;
   getMovie: (id: number) => Promise<Movie>;
-  editMovie: (a) => Promise<Movie>;
+  editMovie: (movie: Movie) => Promise<Movie>;
   editedMovie: Movie | null;
   setEditedMovie: (movie: Movie | null) => void;
-  removeMovie: (a) => Promise<Movie>;
+  removeMovie: (movie: Movie) => Promise<Movie>;
 }
 
 const headers = {
@@ -43,11 +43,14 @@ export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
   const [editedMovie, setEditedMovie] = useState<Movie | null>(null);
 
   const getAllMovies = () => {
-    console.log("will fetch", fetch);
     return fetch(getURI("movies/"))
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Could not fetch list of movies");
+        }
+        return response.json();
+      })
       .then((newMovies) => {
-        console.log("will respond", newMovies);
         if (newMovies.length !== allMovies.length) {
           setAllMovies(newMovies);
           return newMovies;
@@ -60,7 +63,6 @@ export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
   };
 
   const addNewMovie = (movieData: Omit<Movie, "id">) => {
-    console.log("Movie to create", movieData);
     return fetch(getURI("movies/"), {
       method: "POST",
       headers,

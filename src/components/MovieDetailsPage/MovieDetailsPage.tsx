@@ -79,8 +79,6 @@ export const MovieDetailsPage = () => {
                 className="movieDetailsView__image"
               />
             )}
-
-            <p className="movieDetailsView__actorsinfo">list of actors</p>
           </Container>
         </Col>
       </Row>
