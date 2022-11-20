@@ -2,7 +2,6 @@ import { Container, IconButton, Loader, Placeholder } from "rsuite";
 import { useCallback, useEffect, useState } from "react";
 import { useDataService, Movie } from "../../services/DataService";
 import { MovieCard } from "../MovieCard";
-import { FeaturedMovieCard } from "../FeaturedMovieCard";
 import { useNavigate } from "react-router-dom";
 import { NoResults } from "../NoResults/NoResults";
 import { Icon } from "@rsuite/icons";
@@ -24,7 +23,6 @@ export const AllMoviesView = () => {
     useDataService();
 
   const [movies, setMovies] = useState<Movie[]>([] as Movie[]);
-  const [featuredMovies, setFeaturedMovies] = useState<Movie[]>([] as Movie[]);
 
   const navigate = useNavigate();
 
@@ -32,15 +30,11 @@ export const AllMoviesView = () => {
     setOpenNewMovie(true);
   }, []);
 
-  const refreshMovies = () => {
+  const refreshMovies = async () => {
     setLoading(true);
-    getAllMovies().then((newMovies) => {
-      const featuredEvents = newMovies.filter((e) => e.isFeatured);
-      const nonFeaturedEvents = newMovies.filter((e) => !e.isFeatured);
-      setFeaturedMovies(featuredEvents);
-      setMovies(nonFeaturedEvents);
-      setLoading(false);
-    });
+    const newMovies = await getAllMovies();
+    setMovies(newMovies);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -61,7 +55,7 @@ export const AllMoviesView = () => {
 
   if (loading) return <PageLoader />;
 
-  if (!featuredMovies.length && !movies.length) {
+  if (!movies.length) {
     return <NoResults />;
   }
 
@@ -69,7 +63,7 @@ export const AllMoviesView = () => {
     <>
       <Container className="allEventsView__root">
         <div className="sectionTitle">
-          <h2>My favouirite movies</h2>
+          <h2>My favourite movies</h2>
           <IconButton
             data-testid="add-movie-button"
             className="iconButton titleIcon"
@@ -80,18 +74,9 @@ export const AllMoviesView = () => {
           />
         </div>
 
-        {featuredMovies.map((movie) => (
-          <FeaturedMovieCard
-            key={movie.id}
-            movie={movie}
-            onClick={openEventDetailsPage}
-            onActionSuccess={refreshMovies}
-          />
-        ))}
-
         {movies.map((movie) => (
           <MovieCard
-            key={movie.id}
+            key={movie.title}
             movie={movie}
             onClick={openEventDetailsPage}
             onActionSuccess={refreshMovies}
