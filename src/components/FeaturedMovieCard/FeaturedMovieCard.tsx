@@ -59,7 +59,6 @@ export const FeaturedMovieCard = ({
                 { action: removeMovieAction, label: "Remove" },
               ]}
             />
-            <div>list of actors</div>
           </div>
         </div>
       </div>
