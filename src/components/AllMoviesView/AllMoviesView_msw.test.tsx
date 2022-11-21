@@ -56,7 +56,7 @@ describe("AllMoviesView", () => {
     expect(movieCategory).toBeInTheDocument();
     const goBackLink = within(movieDetails).getByText("Take me back");
     expect(goBackLink).toBeInTheDocument();
-    userEvent.click(movieCard);
-    expect(movieDetails).toBeInTheDocument();
+    userEvent.click(goBackLink);
+    expect(await screen.findByTestId("movie-card")).toBeInTheDocument();
   });
 });
