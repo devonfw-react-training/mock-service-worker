@@ -1,11 +1,11 @@
-import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { render, screen, within } from "@testing-library/react";
 import { AllMoviesView } from "./AllMoviesView";
-import { DataProvider, Movie } from "../../services/DataService";
+import { Movie } from "../../services/DataService";
 import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { getURI } from "../../services/getUri";
+import WrapperComponent from "../../tests/WrapperComponent";
 
 const mockMovie = {
   id: 1,
@@ -19,16 +19,6 @@ const mockMovie = {
 };
 
 const mockedResponseMovies: Movie[] = [];
-
-const WrapperComponent = ({ children }: any) => (
-  <DataProvider>
-    <MemoryRouter>
-      <Routes>
-        <Route path="/" element={children} />
-      </Routes>
-    </MemoryRouter>
-  </DataProvider>
-);
 
 const server = setupServer(
   rest.get(getURI("movies"), (req, res, ctx) => {
