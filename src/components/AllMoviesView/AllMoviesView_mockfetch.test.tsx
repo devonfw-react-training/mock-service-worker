@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { getURI } from "../../services/getUri";
 import WrapperComponent from "../../tests/WrapperComponent";
 import { AllMoviesView } from "./AllMoviesView";
+import { vi } from "vitest";
 
 const mockMovie = {
   id: 1,
@@ -15,7 +16,7 @@ const mockMovie = {
   imageUrl: "",
 };
 
-async function mockFetch(url, config) {
+async function mockFetch(url: string, config: { method: string; body: any }) {
   switch (url) {
     case getURI("movies/"): {
       return {
@@ -45,7 +46,7 @@ async function mockFetch(url, config) {
 }
 
 describe("AllMoviesView", () => {
-  beforeAll(() => jest.spyOn(window, "fetch"));
+  beforeAll(() => vi.spyOn(window, "fetch"));
   beforeEach(() => (window.fetch as any).mockImplementation(mockFetch));
 
   it("navigates to details page", async () => {
