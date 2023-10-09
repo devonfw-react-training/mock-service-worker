@@ -56,26 +56,28 @@ describe("AllMoviesView", () => {
     });
     expect(addNewMovieButton).toBeInTheDocument();
     userEvent.click(addNewMovieButton);
-    const form = screen.getByTestId("add-new-movie-form");
+    const form = await screen.findByTestId("add-new-movie-form");
     expect(form).toBeInTheDocument();
 
     // select category
     const categoryField = screen.getByTestId("category-field");
     userEvent.click(categoryField);
-    const option = screen.getByRole("option", { name: mockMovie.category });
+    const option = await screen.findByRole("option", {
+      name: mockMovie.category,
+    });
     userEvent.click(option);
 
     //select title
     const titleField = screen.getByTestId("title-field");
-    userEvent.type(titleField, mockMovie.title);
+    await userEvent.type(titleField, mockMovie.title);
 
     //select summary
     const summaryField = screen.getByTestId("summary-field");
-    userEvent.type(summaryField, mockMovie.summary);
+    await userEvent.type(summaryField, mockMovie.summary);
 
     //select year
     const yearField = screen.getByTestId("year-field");
-    userEvent.type(yearField, mockMovie.year);
+    await userEvent.type(yearField, mockMovie.year);
 
     //rating
     const ratingField = screen.getByTestId("rating-field");

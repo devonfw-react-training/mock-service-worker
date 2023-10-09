@@ -17,6 +17,8 @@ const mockMovie = {
 };
 
 async function mockFetch(url: string, config: { method: string; body: any }) {
+  if (!url) return;
+
   switch (url) {
     case getURI("movies/"): {
       return {

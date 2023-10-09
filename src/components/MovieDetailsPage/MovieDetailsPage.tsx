@@ -33,7 +33,6 @@ export const MovieDetailsPage = () => {
 
   useEffect(() => {
     if (movieId) {
-      console.log("get movie with id", movieId);
       getMovie(+movieId).then((newMovie) => {
         setMovie(newMovie);
         return newMovie;
