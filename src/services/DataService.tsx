@@ -26,10 +26,10 @@ export interface DataService {
   allMovies: Movie[];
   addNewMovie: (eventData: Omit<Movie, "id">) => Promise<Movie>;
   getMovie: (id: number) => Promise<Movie>;
-  editMovie: (a) => Promise<Movie>;
+  editMovie: (movie: Movie) => Promise<Movie>;
   editedMovie: Movie | null;
   setEditedMovie: (movie: Movie | null) => void;
-  removeMovie: (a) => Promise<Movie>;
+  removeMovie: (movie: Movie) => Promise<Movie>;
 }
 
 const headers = {
@@ -44,7 +44,12 @@ export const DataProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const getAllMovies = () => {
     return fetch(getURI("movies/"))
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Could not fetch list of movies");
+        }
+        return response.json();
+      })
       .then((newMovies) => {
         if (newMovies.length !== allMovies.length) {
           setAllMovies(newMovies);

@@ -48,7 +48,6 @@ export const MovieCard = ({ movie, onClick, onActionSuccess }: Props) => {
             { action: removeMovieAction, label: "Remove" },
           ]}
         />
-        <div>list of actors</div>
       </div>
     </div>
   );
