@@ -38,7 +38,9 @@ export const AllMoviesView = () => {
   };
 
   useEffect(() => {
-    refreshMovies();
+    if (!movies.length || allMovies.length !== movies.length) {
+      refreshMovies();
+    }
   }, [allMovies]);
 
   useEffect(() => {
