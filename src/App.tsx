@@ -7,6 +7,15 @@ import { MovieDetailsPage } from "./components/MovieDetailsPage";
 import "rsuite/dist/rsuite.min.css";
 import "./App.css";
 
+export const AppRoutes = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<DashboardPage />} />
+      <Route path="movies/:movieId" element={<MovieDetailsPage />} />
+    </Routes>
+  );
+};
+
 function App() {
   return (
     <div className="App">
@@ -15,10 +24,7 @@ function App() {
           <Col xs={24} sm={24} md={2}>
             <Sidebar />
           </Col>
-          <Routes>
-            <Route path="/" element={<DashboardPage />} />
-            <Route path="movies/:movieId" element={<MovieDetailsPage />} />
-          </Routes>
+          <AppRoutes />
         </Row>
       </Grid>
     </div>

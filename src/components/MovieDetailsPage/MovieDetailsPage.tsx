@@ -45,11 +45,15 @@ export const MovieDetailsPage = () => {
   };
 
   return (
-    <Grid fluid>
+    <Grid fluid data-testid="moviedetails">
       <Row className="show-grid">
         <Col xs={24} sm={24} md={14}>
           <Container className="movieDetailsView__leftColumn">
-            <div className="movieDetailsView__goBack" onClick={goBack}>
+            <div
+              className="movieDetailsView__goBack"
+              data-testid="goback-link"
+              onClick={goBack}
+            >
               {" "}
               <Icon
                 as={FaAngleLeft}
