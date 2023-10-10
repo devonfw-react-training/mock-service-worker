@@ -1,11 +1,11 @@
-import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { render, screen, within } from "@testing-library/react";
 import { AllMoviesView } from "./AllMoviesView";
-import { DataProvider, Movie } from "../../services/DataService";
+import { Movie } from "../../services/DataService";
 import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { getURI } from "../../services/getUri";
+import WrapperComponent from "../../tests/WrapperComponent";
 
 const mockMovie = {
   id: 1,
@@ -19,16 +19,6 @@ const mockMovie = {
 };
 
 const mockedResponseMovies: Movie[] = [];
-
-const WrapperComponent = ({ children }: any) => (
-  <DataProvider>
-    <MemoryRouter>
-      <Routes>
-        <Route path="/" element={children} />
-      </Routes>
-    </MemoryRouter>
-  </DataProvider>
-);
 
 const server = setupServer(
   rest.get(getURI("movies"), (req, res, ctx) => {
@@ -63,26 +53,28 @@ describe("AllMoviesView", () => {
     });
     expect(addNewMovieButton).toBeInTheDocument();
     userEvent.click(addNewMovieButton);
-    const form = screen.getByTestId("add-new-movie-form");
+    const form = await screen.findByTestId("add-new-movie-form");
     expect(form).toBeInTheDocument();
 
     // select category
     const categoryField = screen.getByTestId("category-field");
     userEvent.click(categoryField);
-    const option = screen.getByRole("option", { name: mockMovie.category });
+    const option = await screen.findByRole("option", {
+      name: mockMovie.category,
+    });
     userEvent.click(option);
 
     //select title
     const titleField = screen.getByTestId("title-field");
-    userEvent.type(titleField, mockMovie.title);
+    await userEvent.type(titleField, mockMovie.title);
 
     //select summary
     const summaryField = screen.getByTestId("summary-field");
-    userEvent.type(summaryField, mockMovie.summary);
+    await userEvent.type(summaryField, mockMovie.summary);
 
     //select year
     const yearField = screen.getByTestId("year-field");
-    userEvent.type(yearField, mockMovie.year);
+    await userEvent.type(yearField, mockMovie.year);
 
     //rating
     const ratingField = screen.getByTestId("rating-field");
